@@ -1,0 +1,17 @@
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.pulseAnimation {
+  animation: pulse 1s ease-in-out infinite;
+}
+
+.negativeLeading {
+  line-height: 0.8;
+  margin-top: -0.2em;
+}

@@ -1,0 +1,43 @@
+'use client'
+
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Step1 } from "@/components/steps/presell/step1";
+
+export type TStepsPresell = 1 | 2 | 3;
+
+const Step2 = () => <div>Step 2 Component</div>; // Placeholder
+const Step3 = () => <div>Step 3 Component</div>; // Placeholder
+
+export default function Home() {
+  const [step, setStep] = useState<TStepsPresell>(1);
+
+  const steps = {
+    1: <Step1 setStep={setStep} />,
+    2: <Step2 />,
+    3: <Step3 />,
+  };
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
+
+  return (
+    <div className="min-h-screen bg-slate-50">
+      <AnimatePresence initial={false} mode="wait">
+        <motion.div
+          key={`step-${step}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          className={`glow-center-${step} pb-2 flex flex-1 flex-col min-h-dvh`}
+        >
+          <div className="flex flex-col flex-1 z-10 relative">
+            {steps[step]}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
